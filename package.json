@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/Green-Avocado/projects/issues"
   },
-  "homepage": "https://github.com/Green-Avocado/projects#readme"
+  "homepage": "https://github.com/Green-Avocado/projects#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0",
+    "nocache": "^2.1.0",
+    "yargs": "^16.2.0"
+  }
 }
