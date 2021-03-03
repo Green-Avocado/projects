@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const express = require('express');
-const proxy = require('express-http-proxy');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const PORT = 5101;
 
@@ -25,13 +25,26 @@ app.use('*', function(req, res, next) {
 
 
 
-app.use('/cctweaked', proxy('localhost:5110'));
+const wsProxy = createProxyMiddleware('/socket/', {
+    target: 'http://projects.jasonn.dev',
+    router: {
+        '/ubc-cctweaked': 'http://localhost:5110'
+    },
+    changeOrigin: true,
+    ws: true
+});
+
+app.use(wsProxy);
+
+
+
 
 app.use('*', (req, res) => res.sendStatus(404));
 
 
 
-app.listen(PORT);
+const server = app.listen(PORT);
+server.on('upgrade', wsProxy.upgrade);
 
 process.on('SIGINT', function() {
     console.log('\nGracefully shutting down from SIGINT (Ctrl-C)\n');

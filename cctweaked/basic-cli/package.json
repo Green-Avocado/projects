@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "websocket": "^1.0.33"
+  },
+  "name": "basic-cli",
+  "version": "1.0.0",
+  "main": "basic.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "description": ""
+}
