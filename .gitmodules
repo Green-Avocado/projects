@@ -1,0 +1,3 @@
+[submodule "cc-tweaked-tools"]
+	path = cc-tweaked-tools
+	url = https://github.com/Green-Avocado/cc-tweaked-tools.git
