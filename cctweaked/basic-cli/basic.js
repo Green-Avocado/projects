@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const http = require('http');
-const readline = require('readline')
+const readline = require('readline');
 const WebSocketServer = require('websocket').server;
 
 const PORT = 5110;
