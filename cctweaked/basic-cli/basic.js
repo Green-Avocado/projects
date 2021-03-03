@@ -28,10 +28,10 @@ const wss = new WebSocketServer({
 
 
 wss.on('request', function(req) {
-    var conn = req.accept('basic-cli', req.origin);
+    var conn = req.accept();
 
     conn.on('message', function(msg) {
-        rl.question(msg, answer => {conn.sendUTF(answer)});
+        rl.question(`${msg.utf8Data}\n> `, answer => {conn.sendUTF(answer)});
     });
 });
 
