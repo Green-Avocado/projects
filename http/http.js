@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const express = require('express');
-const proxy = require('express-http-proxy');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const PORT = 5101;
 
@@ -25,7 +25,8 @@ app.use('*', function(req, res, next) {
 
 
 
-app.use('/cctweaked', proxy('localhost:5110'));
+const proxy = createProxyMiddleware('/ubc-cctweaked', { target: 'http://localhost:5110', changeOrigin: true, ws: true });
+app.use(ubcCctweakedProxy);
 
 app.use('*', (req, res) => res.sendStatus(404));
 
