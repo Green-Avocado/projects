@@ -25,7 +25,7 @@ app.use('*', function(req, res, next) {
 
 
 
-const proxy = createProxyMiddleware('/ubc-cctweaked', { target: 'http://localhost:5110', changeOrigin: true, ws: true });
+const ubcCctweakedProxy = createProxyMiddleware('/ubc-cctweaked', { target: 'http://localhost:5110', changeOrigin: true, ws: true });
 app.use(ubcCctweakedProxy);
 
 app.use('*', (req, res) => res.sendStatus(404));
