@@ -25,7 +25,7 @@ app.use('*', function(req, res, next) {
 
 
 
-const wsProxy = createProxyMiddleware('/socket/', {
+const wsProxy = createProxyMiddleware('/socket', {
     target: 'http://projects.jasonn.dev',
     router: {
         '/ubc-cctweaked': 'http://localhost:5110'
