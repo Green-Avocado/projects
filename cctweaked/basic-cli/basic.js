@@ -27,12 +27,29 @@ const wss = new WebSocketServer({
 
 
 
+var conn = null;
+
 wss.on('request', function(req) {
-    var conn = req.accept();
+    if(!conn) {
+        conn = req.accept();
+        console.log("\nCONNECTION OPENED\n");
+    }
 
     conn.on('message', function(msg) {
-        rl.question(`${msg.utf8Data}\n> `, answer => {conn.sendUTF(answer)});
+        console.log(msg.utf8Data);
     });
+
+    conn.on('close', function(reason, desc) {
+        console.log("\nCONNECTION CLOSED\n");
+        conn = null;
+    });
+});
+
+
+rl.on('line', function(input) {
+    if(conn) {
+        conn.sendUTF(input);
+    }
 });
 
 
